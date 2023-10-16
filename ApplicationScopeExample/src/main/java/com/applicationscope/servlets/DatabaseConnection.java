@@ -43,15 +43,15 @@ public class DatabaseConnection extends HttpServlet {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
 		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee_db","root","password1");
-			out.print("<h1> Employee DB Connection Object: " + connection + "</h2>");
-			
-			getServletContext().setAttribute("employee-connection-db", connection);
-		} catch (Exception e) {
-			out.print("<h1> Exception in opening connection to Employee DB : " + e.getMessage() + "</h2>");
-		}
+//		try {
+//			Class.forName("com.mysql.jdbc.Driver");
+//			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee_db","root","password1");
+//			out.print("<h1> Employee DB Connection Object: " + connection + "</h2>");
+//			
+//			getServletContext().setAttribute("employee-connection-db", connection);
+//		} catch (Exception e) {
+//			out.print("<h1> Exception in opening connection to Employee DB : " + e.getMessage() + "</h2>");
+//		}
 	}
 
 	/**

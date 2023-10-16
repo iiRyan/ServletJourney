@@ -49,7 +49,7 @@ public class TestDbConnection extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out =  response.getWriter();
-		Connection connection = (Connection) servletContext.getAttribute("employee-connection-db");
+		Connection connection = (Connection) servletContext.getAttribute("db-connection");
 		
 		out.print("<h1> Employee Object is Obtained From context: "
 		+connection + "</h1>");
