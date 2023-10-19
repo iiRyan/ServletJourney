@@ -1,0 +1,53 @@
+What is JSP?
+A text-based document capable of returnig dynamic content to a clinet browser. It has both Static and Dynamic content.
+Enables separation of business logic from presention.
+
+JSP is a servlet Object,After writing jsp the Container converts this JSP code to servlet Object.
+
+JSP Lifecycle Phases:
+
+	1- Translation phase: In this phase the JSP page is converted to a Servlet Class.
+	2- Complie phase: Where the Servlet class is compiled.
+	3- Execution Phase The Servlet class lifecycle is compiled.
+	
+	There's Static Element and Scripting Element:
+	Static Element wich is HTML,CSS,JS and other technolgys used in frontEnd.
+	
+	Scripting Element Lets You insert Java code into the sevlet that will be generated from JSP page.
+	There're Three forms:
+	Expressions: <%= Expressions %>
+	Scriptlets:  <% int i = 10;%>
+	Declarations: <%! %> When Declare java Function or Java Attriubte.
+	
+	it's Better to Minimze the usage of JSP Scripting Element in Your JSP pages if possible,Because the code 
+	reusability will be reduced.
+	
+								========================= JSP Actions ====================
+								
+		Types of JSP Actions:
+		1- Standard Actions.
+		2- JSTL Actions(JSP Standard Tag Library).
+		3- Custom Actions.
+		
+		
+	The deffrance betwen Include Directive Include Action : 
+
+	Include Directive:In translation Time
+	Include Action:In Execution Time
+	
+								========================= JavaBeans ====================
+	What is it? 
+	- Java Classes that can be easliy reused and composed together into an application.
+	- Any Java class that follows certain design conventions can be a JavaBeans component
+		- Private Propeties.
+		- Public Getters and Setters.
+	- JavaBeans Can contain business logic or DataBase access logic.							
+																															
+																															This is the idea about beans. When we have a database
+																															application, we clarify every database table as a java bean, so that every 
+																															attribute in this class, is a database table column, and every object in this class is a 
+																															database table row, and I can write
+																															a code in the setter function or in the getter function to implement the
+																															business logic. So before I set a value, I can perform a certain logic or validation,
+																															and before returning the value, I can perform a certain logic.
+	
