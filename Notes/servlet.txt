@@ -1,0 +1,73 @@
+
+	************* a Servlet’s REAL job is to handle requests. **************
+
+
+	What does your web server do?
+	A web server takes a client request and gives
+	something back to the client.
+
+
+	What is the HTTP protocol? 
+	HTTP runs on top of TCP/IP
+	
+	what is TCP? 
+	TCP
+	is responsible for making sure that a file sent from one
+	network node to another ends up as a complete file at the
+	destination, even though the file is split into chunks when it’s sent
+
+
+	Servlet and JSP: 
+	
+	With a servlet,
+	you write a Java class that contains HTML in the output statements
+	(if you’re sending back an HTML page to the client). But with a
+	JSP, it’s the opposite—you write an HTML page that contains Java code!
+	
+	
+	Applaction Server J2EE : 
+	A fully-compliant J2EE application server must have both a web Container and an EJB Container (plus other things
+	including a JNDI and JMS implementation). Tomcat is just a web Container! It is still compliant with the
+	portions of the J2EE spec that address the web Container.
+	Tomcat is a web Container, not a full J2EE application
+	server, because Tomcat does not have an EJB Container.
+	
+	
+	Container’s overall role in a servlet’s life—it
+	creates the request and response objects, creates or allocates a new
+	thread for the servlet, and calls the servlet’s service() method, passing the
+	request and response references as arguments.
+	
+	
+	the difference between GET and POST is the size of the parameter data you
+	When you use GET, the parameter data shows up in the browser’s
+	input bar, right after actual URL (and separated with a “?”).
+	- The defuat Method for any request is GET.
+	
+	** Dispatch & Redirect **
+	A request dispatch does the work
+	on the server side
+	And that’s the big difference between a redirect and a request dispatch—redirect
+	makes the client do the work while request dispatch makes something else on the
+	server do the work. So remember: redirect = client, request dispatch = server.
+	We’ll say more about request dispatch in a later chapter, but these two pages
+	should give you a quick look at the highlights.
+	
+	When a servlet does a request, dispatch, the URL Bar in the clinte brwoser do not change.
+	When a servlet does a redirect,The user sees the new URL in the browser.
+	
+	
+																																A stateless connection means that each action or request is treated like a brand new, 
+																																separate event.
+	
+	======================================= Session Tracking =====================================
+	
+	Why Session Tracking? 
+	session is a mechanism to maintain a state a cross a series of requests from a specific user, 
+	over a certain period of time.
+	
+	What is Cookie : Cookie is a small amount of information sent by a servlet to a web brwoser.
+	why Cookies over the other Than URL Rewritng or Hiddin parameter? The Cookies keep saving the data 
+	even after closing the browser.
+	
+	What is the name of the cookie that the jaba web server depends on to identify the user's ID ? JSESSION
