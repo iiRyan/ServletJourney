@@ -2,7 +2,11 @@ package employee.crud.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
+
+import org.eclipse.jdt.internal.compiler.ast.WhileStatement;
 
 import employee.crud.beans.Employee;
 import employee.crud.db.DBConnection;
@@ -79,8 +83,31 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 	@Override
 	public List<Employee> getAllEmployee() {
-		
-		return null;
+
+		try {
+			String selectStatement = "SELECT * FROM employee_db.employee;";
+			PreparedStatement preparedStatement = connection.prepareStatement(selectStatement);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			List<Employee> employees = new ArrayList<Employee>();
+
+			while (resultSet.next()) {
+
+				Employee employee = new Employee();
+				employee.setId(resultSet.getInt("id"));
+				employee.setName(resultSet.getString("name"));
+				employee.setEmail(resultSet.getString("email"));
+				employee.setPhone(resultSet.getString("phone"));
+				employee.setAddress(resultSet.getString("address"));
+
+				employees.add(employee);
+			}
+
+			return employees;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 
 	@Override
@@ -101,7 +128,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		EmployeeDAOImpl employeeDAOImpl = new EmployeeDAOImpl();
 
 		// System.out.println(employeeDAOImpl.addEmployee(employee));
-		System.out.println(employeeDAOImpl.deleteEmployee(12));
-
+		System.out.println(employeeDAOImpl.getAllEmployee().size());
 	}
 }
