@@ -1,0 +1,6 @@
+
+
+JSP Scripting Element:
+	1- Expressions: <%=	Expressions %> To type or write a varibal certain object name.
+	2- Scriptlets: <% Java Code %> 
+	3- Declartions: <%! Declartions %>
