@@ -112,8 +112,30 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 	@Override
 	public Employee getEmployee(int employeeId) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("Start getEmployee");
+
+		try {
+			String selectStatement = "SELECT * FROM  employee_db.employee where id =?;";
+			PreparedStatement preparedStatement = connection.prepareStatement(selectStatement);
+			preparedStatement.setInt(1, employeeId);
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			Employee employee = new Employee();
+
+			while (resultSet.next()) {
+
+				employee.setId(resultSet.getInt("id"));
+				employee.setName(resultSet.getString("name"));
+				employee.setEmail(resultSet.getString("email"));
+				employee.setPhone(resultSet.getString("phone"));
+				employee.setAddress(resultSet.getString("address"));
+			}
+
+			return employee;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public static void main(String[] args) {
@@ -127,7 +149,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 		EmployeeDAOImpl employeeDAOImpl = new EmployeeDAOImpl();
 
-		// System.out.println(employeeDAOImpl.addEmployee(employee));
-		System.out.println(employeeDAOImpl.getAllEmployee().size());
+	
+		System.out.println(employeeDAOImpl.getEmployee(10));
+		//System.out.println(employeeDAOImpl.getAllEmployee().get(0));
 	}
 }
