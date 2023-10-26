@@ -6,10 +6,13 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.codehaus.jackson.map.ObjectMapper;
 
 import employee.crud.beans.Employee;
 import employee.crud.dao.EmployeeDAO;
@@ -91,9 +94,12 @@ public class EmployeeController extends HttpServlet {
 		boolean result = employeeDAO.addEmployee(employee);
 		System.out.println("addNewEmployeere Result is ==> " + result);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/employeesView.jsp");
+		List<Employee> employees = employeeDAO.getAllEmployees();
+		System.out.println("getAllEmployees, employees size ==> " + employees.size());
 
 		try {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/employeesView.jsp");
+			request.setAttribute("employees", employees);
 			dispatcher.forward(request, response);
 		} catch (ServletException | IOException e) {
 
@@ -147,37 +153,47 @@ public class EmployeeController extends HttpServlet {
 	}
 
 	private void getAllEmployee(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("Start getAllEmployee()");
+		System.out.println("Start getAllEmployees");
 
-
-		List<Employee> employees = employeeDAO.getAllEmployee();
-		System.out.println("getAllEmployee Result is ==> " + employees.size());
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/employeesView.jsp");
+		List<Employee> employees = employeeDAO.getAllEmployees();
+		System.out.println("getAllEmployees, employees size ==> " + employees.size());
 
 		try {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/employeesView.jsp");
+			request.setAttribute("employees", employees);
 			dispatcher.forward(request, response);
 		} catch (ServletException | IOException e) {
-
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	private void getEmployee(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("Start getEmployee()");
-		
-		int id = Integer.parseInt(request.getParameter("id"));
+
+		int id = Integer.parseInt(request.getParameter("employeeId"));
 		System.out.println("getEmployee(), Employee ID ==> " + id);
 
 		Employee employee = employeeDAO.getEmployee(id);
 		System.out.println("getEmployee Result is ==> " + employee);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/employeesView.jsp");
-
+		
 		try {
-			dispatcher.forward(request, response);
-		} catch (ServletException | IOException e) {
+			// To convert the "employee" object from a java object to a json object.
+			ObjectMapper mapper = new ObjectMapper();
+			/*
+			 * define a string where we receive the jakson function’s output, which is write
+			 * value as a string. By that, it outputs a json object from the java object.
+			 */
+			String employeeStr = mapper.writeValueAsString(employee);
+
+			/*
+			 * And because the write function in the servlet output stream is assigned an
+			 * array of bytes, we convert this string to an array of bytes.
+			 */
+			ServletOutputStream outputStream = response.getOutputStream();
+			outputStream.write(employeeStr.getBytes());
+		} catch (IOException e) {
 
 			e.printStackTrace();
 		}

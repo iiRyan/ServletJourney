@@ -82,7 +82,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 	@Override
-	public List<Employee> getAllEmployee() {
+	public List<Employee> getAllEmployees() {
 
 		try {
 			String selectStatement = "SELECT * FROM employee_db.employee;";
@@ -93,6 +93,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			while (resultSet.next()) {
 
 				Employee employee = new Employee();
+				
 				employee.setId(resultSet.getInt("id"));
 				employee.setName(resultSet.getString("name"));
 				employee.setEmail(resultSet.getString("email"));

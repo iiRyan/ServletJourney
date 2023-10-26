@@ -16,7 +16,7 @@ public interface EmployeeDAO {
 	public boolean deleteEmployee(int employeeId);
 
 	// 4-Get All Employee
-	public List<Employee> getAllEmployee();
+	public List<Employee> getAllEmployees();
 
 	// 5-Get Single Employee
 	public Employee getEmployee(int employeeId);
